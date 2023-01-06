@@ -1,0 +1,39 @@
+apiVersion: v1
+entries:
+  packa:
+  - apiVersion: v2
+    appVersion: 0.0.8
+    created: "2023-01-06T19:06:32.410615+08:00"
+    description: A Helm chart for Kubernetes
+    digest: 287b90779d0bf983008f10fd960833af9c2c6398b73cffbe9402bd05883b36e5
+    name: packa
+    type: application
+    urls:
+    - packa-0.1.3.tgz
+    version: 0.1.3
+  - apiVersion: v2
+    appVersion: 0.0.8
+    created: "2023-01-06T19:06:32.410119+08:00"
+    description: A Helm chart for Kubernetes
+    digest: c72c253a84a14ad7c4b643262171592d5b74d7a5e43a54112da2a4db9c019ca6
+    name: packa
+    type: application
+    urls:
+    - packa-0.1.2.tgz
+    version: 0.1.2
+  packb:
+  - apiVersion: v2
+    appVersion: 0.0.8
+    created: "2023-01-06T19:06:32.411339+08:00"
+    dependencies:
+    - name: packa
+      repository: file://.././packa-0.1.3/
+      version: 0.1.3
+    description: A Helm chart for Kubernetes
+    digest: 044d3bc58f65d1ad6d738824c70559b756e6f5c3a32194b14b0bc60d8301829c
+    name: packb
+    type: application
+    urls:
+    - packb-1.0.5.tgz
+    version: 1.0.5
+generated: "2023-01-06T19:06:32.407377+08:00"
