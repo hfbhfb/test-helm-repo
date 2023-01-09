@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    description: ''
+  labels:
+    appgroup: ''
+    version: v1
+    virtual-kubelet.io/burst-to-cci: force
+  name: cci-nginx
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app: cci-nginx
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: cci-nginx
+        version: v1
+    spec:
+      containers:
+        - name: container-1
+          image: nginx:alpine-perl
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: PAAS_APP_NAME
+              value: cci-nginx
+            - name: PAAS_NAMESPACE
+              value: default
+            - name: PAAS_PROJECT_ID
+              value: 978e85f4697c4fcd80cadf6bc7061b2a
+          resources:
+            requests:
+              cpu: 250m
+              memory: 512Mi
+            limits:
+              cpu: 250m
+              memory: 512Mi
+      imagePullSecrets:
+        - name: default-secret
+      terminationGracePeriodSeconds: 30
+      dnsPolicy: ClusterFirst
+      tolerations:
+        - key: node.kubernetes.io/not-ready
+          operator: Exists
+          effect: NoExecute
+          tolerationSeconds: 300
+        - key: node.kubernetes.io/unreachable
+          operator: Exists
+          effect: NoExecute
+          tolerationSeconds: 300
+      initContainers: []
+      volumes: []
+  replicas: 1
+  revisionHistoryLimit: 10
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 25%
+      maxSurge: 25%
+  progressDeadlineSeconds: 600
+
