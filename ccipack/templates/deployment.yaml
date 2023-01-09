@@ -6,7 +6,7 @@ metadata:
   labels:
     appgroup: ''
     version: v1
-    virtual-kubelet.io/burst-to-cci: force
+    virtual-kubelet.io/burst-to-cci: enforce
   name: cci-nginx
   namespace: default
 spec:
